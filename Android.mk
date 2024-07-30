@@ -166,9 +166,13 @@ endif
 DISK_VDA_WRITE_PARTITIONS := \
 	$(BOARD_CUSTOMIMAGES_PARTITION_LIST) \
 	super \
-	cache \
+	cache
+
+ifneq ($(USES_DEVICE_VIRT_VIRTIO_RISCV64),true)
+DISK_VDA_WRITE_PARTITIONS += \
 	boot \
 	recovery
+endif
 
 # $(1): output file
 # $(2): disk name
